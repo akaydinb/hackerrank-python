@@ -4,16 +4,25 @@ import numpy
 
 if __name__ == '__main__':
     [ N, M ] = input().split();
-    A = numpy.array( input().split(), int);
-    B = numpy.array( input().split(), int);
+    L = [ ];
+    for _ in range(int(N)):
+        L.append(input().split());
+    #print(L)
+    A = numpy.array(L, int);
 
-    print(A);
-    print(B);
+    L = [ ];
+    for _ in range(int(N)):
+        L.append(input().split());
+    #print(L)
+    B = numpy.array(L, int);
 
-    print( "[", numpy.add(A, B),      "]", sep = '' );
-    print( "[", numpy.subtract(A, B), "]", sep = '' );
-    print( "[", numpy.multiply(A, B), "]", sep = '' );
-    print( "[", A // B,               "]", sep = '' );
-    print( "[", numpy.mod(A, B),      "]", sep = '' );
-    print( "[", numpy.power(A, B),    "]", sep = '' );
+#    A = numpy.array( input().split(), int);
+#    B = numpy.array( input().split(), int);
+
+    print( numpy.add(A, B),      sep = '' );
+    print( numpy.subtract(A, B), sep = '' );
+    print( numpy.multiply(A, B), sep = '' );
+    print( A // B,               sep = '' );
+    print( numpy.mod(A, B),      sep = '' );
+    print( numpy.power(A, B),    sep = '' );
 

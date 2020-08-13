@@ -1,49 +1,28 @@
 #!/usr/bin/python3
 
-# Classes: Dealing with complex numbers
-import math
-
-class Complex(object):
-    def __init__(self, real, imaginary):
-        self.real = real;
-        self.imaginary = imaginary;
-
-    def __add__(self, no):
-        return Complex((self.real + no.real), (self.imaginary + no.imaginary));
-
-    def __sub__(self, no):
-        return Complex((self.real - no.real), (self.imaginary - no.imaginary));
-
-    def __mul__(self, no):
-        return Complex((self.real * no.real - self.imaginary * no.imaginary),
-                       (self.real * no.imaginary + self.imaginary * no.real));
-
-    def __truediv__(self, no):
-        m2 = (no.real ** 2) + (no.imaginary ** 2)
-        return Complex((self.real * no.real - self.imaginary * -no.imaginary) / m2, 
-                       (self.real * -no.imaginary + self.imaginary * no.real) / m2);
-
-    def mod(self):
-        return Complex(math.sqrt((self.real ** 2) + (self.imaginary ** 2)), 0);
-
-    def __str__(self):
-        if self.imaginary == 0:
-            result = "%.2f+0.00i" % (self.real)
-        elif self.real == 0:
-            if self.imaginary >= 0:
-                result = "0.00+%.2fi" % (self.imaginary)
-            else:
-                result = "0.00-%.2fi" % (abs(self.imaginary))
-        elif self.imaginary > 0:
-            result = "%.2f+%.2fi" % (self.real, self.imaginary)
-        else:
-            result = "%.2f-%.2fi" % (self.real, abs(self.imaginary))
-        return result
+import numpy
 
 if __name__ == '__main__':
-    c = map(float, input().split())
-    d = map(float, input().split())
-    x = Complex(*c)
-    y = Complex(*d)
-    print(*map(str, [x+y, x-y, x*y, x/y, x.mod(), y.mod()]), sep='\n')
-    
+    [ N, M ] = input().split();
+    L = [ ];
+    for _ in range(int(N)):
+        L.append(input().split());
+    #print(L)
+    A = numpy.array(L, int);
+
+    L = [ ];
+    for _ in range(int(N)):
+        L.append(input().split());
+    #print(L)
+    B = numpy.array(L, int);
+
+#    A = numpy.array( input().split(), int);
+#    B = numpy.array( input().split(), int);
+
+    print( numpy.add(A, B),      sep = '' );
+    print( numpy.subtract(A, B), sep = '' );
+    print( numpy.multiply(A, B), sep = '' );
+    print( A // B,               sep = '' );
+    print( numpy.mod(A, B),      sep = '' );
+    print( numpy.power(A, B),    sep = '' );
+
