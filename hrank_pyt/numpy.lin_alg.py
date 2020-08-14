@@ -7,6 +7,6 @@ if __name__ == '__main__':
     for _ in range(int(input())):
         A.append( input().split() );
 
-    print(numpy.linalg.det(numpy.array(A, float)));
+    print(round(numpy.linalg.det(numpy.array(A, float)), 2));
     
 
