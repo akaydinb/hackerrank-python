@@ -15,10 +15,15 @@ def minion_game(string):
     Spoints = 0;
     Kpoints = 0;
     
+    print(stuart);
+    print(kevin);
+    
     for x in stuart:
+        print("[", Spoints, "]", x, string.count(x));
         Spoints = Spoints + string.count(x);
         
     for x in kevin:
+        print("[", Kpoints, "]", x, string.count(x));
         Kpoints = Kpoints + string.count(x);
         
     if Spoints > Kpoints:
