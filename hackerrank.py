@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 
 from itertools import combinations
+import re
 
 def minion_game(string):
     stuart = set();
@@ -26,16 +27,22 @@ def minion_game(string):
     print(kevin);
     
     for x in stuart:
-        print("[", Spoints, "]", x, string.count(x));
-        Spoints = Spoints + string.count(x);
+        regexpattern = re.compile(r'(?=(%s))' %x);
+        #print("[", Spoints, "]", x, string.count(x));
+        #Spoints = Spoints + string.count(x);
+        Spoints = Spoints + len(re.findall(regexpattern, string));
 
 #https://stackoverflow.com/questions/37499968/finding-all-repeated-substrings-in-a-string-and-how-often-they-appear
 #https://stackoverflow.com/questions/5616822/python-regex-find-all-overlapping-matches
 
     for x in kevin:
-        print("[", Kpoints, "]", x, string.count(x));
-        Kpoints = Kpoints + string.count(x);
-        
+        regexpattern = re.compile(r'(?=(%s))' %x);
+        # Testing : print( len(re.findall(regexpattern, string)));
+        #print( re.findall(r'(?=(%s))' %x, string));
+        #print("[", Kpoints, "]", x, string.count(x));
+        #Kpoints = Kpoints + string.count(x);
+        Kpoints = Kpoints + len(re.findall(regexpattern, string));
+    
     if Spoints > Kpoints:
         print("Stuart", Spoints);
     elif Kpoints > Spoints:
