@@ -1,4 +1,15 @@
-3
+8
 odd 2
 even 3
 odd 5
+odd 5
+even 8
+odd 3
+even 6
+even 6
+
+3
+even 3
+odd 3
+even 3
+
