@@ -1,55 +1,33 @@
 #!/usr/bin/python3
 
-from itertools import combinations
-import re
+class EvenStream(object):
+    def __init__(self):
+        self.current = 0
 
-def minion_game(string):
-    stuart = set();
-    kevin  = set();
-#    for i in range(len(string)):
-#        for j in range(i, len(string)):
-#            substr = string[i:j+1];
-#            if substr[0] in ['A', 'E', 'I', 'O', 'U']:
-#                kevin.add(substr);
-#            else:
-#                stuart.add(substr);
-    substr = set( string[x:y] for x, y in combinations(range(len(string) + 1), r = 2) );
-    for astr in substr:
-        if astr[0] in ['A', 'E', 'I', 'O', 'U']:
-            kevin.add(astr);
-        else:
-            stuart.add(astr);
+    def get_next(self):
+        to_return = self.current
+        self.current += 2
+        return to_return
 
-    Spoints = 0;
-    Kpoints = 0;
-    
-    print(stuart);
-    print(kevin);
-    
-    for x in stuart:
-        regexpattern = re.compile(r'(?=(%s))' %x);
-        #print("[", Spoints, "]", x, string.count(x));
-        #Spoints = Spoints + string.count(x);
-        Spoints = Spoints + len(re.findall(regexpattern, string));
+class OddStream(object):
+    def __init__(self):
+        self.current = 1
 
-#https://stackoverflow.com/questions/37499968/finding-all-repeated-substrings-in-a-string-and-how-often-they-appear
-#https://stackoverflow.com/questions/5616822/python-regex-find-all-overlapping-matches
+    def get_next(self):
+        to_return = self.current
+        self.current += 2
+        return to_return
 
-    for x in kevin:
-        regexpattern = re.compile(r'(?=(%s))' %x);
-        # Testing : print( len(re.findall(regexpattern, string)));
-        #print( re.findall(r'(?=(%s))' %x, string));
-        #print("[", Kpoints, "]", x, string.count(x));
-        #Kpoints = Kpoints + string.count(x);
-        Kpoints = Kpoints + len(re.findall(regexpattern, string));
-    
-    if Spoints > Kpoints:
-        print("Stuart", Spoints);
-    elif Kpoints > Spoints:
-        print("Kevin", Kpoints);
-    elif Spoints == Kpoints:
-        print("Draw");
+def print_from_stream(n, stream=EvenStream()):
+    for _ in range(n):
+        print(stream.get_next())
 
-if __name__ == '__main__':
-    s = input();
-    minion_game(s);
+
+queries = int(input())
+for _ in range(queries):
+    stream_name, n = input().split()
+    n = int(n)
+    if stream_name == "even":
+        print_from_stream(n)
+    else:
+        print_from_stream(n, OddStream())
